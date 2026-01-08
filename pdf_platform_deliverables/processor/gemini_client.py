@@ -3,7 +3,7 @@ import json
 from google import genai
 
 # Read API key from environment variable
-GEMINI_API_KEY = "AIzaSyDhCwOrgLPLuYdcM7a6uC_Q_7dptSmPmxY"
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 
 client = genai.Client(api_key="AIzaSyDhCwOrgLPLuYdcM7a6uC_Q_7dptSmPmxY")
 

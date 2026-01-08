@@ -1,19 +1,65 @@
 {
+  "name": "PDF Processing Workflow",
   "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "/process-pdf",
+        "responseMode": "=onReceived",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "bb1bd517-3cf5-4e15-9b02-a316c7a239f3",
+      "name": "Webhook",
+      "webhookId": "9017f6d4-4a7f-49c4-a316-8aa4cf652894"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:5002/process",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "file_path",
+              "value": "={{$json.body.file_path}}"
+            },
+            {
+              "name": "document_id",
+              "value": "={{$json.body.document_id}}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.3,
+      "position": [
+        208,
+        0
+      ],
+      "id": "aedcb8cf-b991-4659-b297-907929002611",
+      "name": "HTTP Request"
+    },
     {
       "parameters": {
         "assignments": {
           "assignments": [
             {
-              "id": "a068a1c0-0f79-4c68-a053-564d08114026",
+              "id": "8e22251e-b9bb-4e10-a1b0-cbd458923574",
               "name": "document_type",
-              "value": "={{ $json[\"document_type\"] }}",
+              "value": "= {{ $json.document_type }}",
               "type": "string"
             },
             {
-              "id": "5e571658-b6c2-4b3d-ae31-3d0c11cc5348",
+              "id": "0b3a15c9-542e-4fbc-adeb-1c210cc2736b",
               "name": "extracted_data",
-              "value": "={{ $json[\"extracted_data\"] }}",
+              "value": "={{ $json.extracted_data }}",
               "type": "string"
             }
           ]
@@ -26,13 +72,44 @@
         416,
         0
       ],
-      "id": "6981e7fd-716e-4041-ac2e-5bfd51fee95c",
+      "id": "240e34f4-e55d-4208-9293-96ce395565ab",
       "name": "Edit Fields"
     }
   ],
-  "connections": {},
   "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "563bca2b-7594-446f-abce-5bdae1e076ca",
   "meta": {
     "instanceId": "9103cdfd1862ad40953a6fd3c2bd56c0b0c896e5310930d85c1ef697fb0f64a2"
-  }
+  },
+  "id": "wmyt4aczj_2zw5gJhIxDE",
+  "tags": []
 }

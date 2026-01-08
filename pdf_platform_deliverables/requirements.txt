@@ -2,4 +2,4 @@ flask
 requests
 python-dotenv
 pdfplumber
-google-generativeai
+google-genai
