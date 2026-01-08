@@ -1,0 +1,38 @@
+{
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a068a1c0-0f79-4c68-a053-564d08114026",
+              "name": "document_type",
+              "value": "={{ $json[\"document_type\"] }}",
+              "type": "string"
+            },
+            {
+              "id": "5e571658-b6c2-4b3d-ae31-3d0c11cc5348",
+              "name": "extracted_data",
+              "value": "={{ $json[\"extracted_data\"] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        416,
+        0
+      ],
+      "id": "6981e7fd-716e-4041-ac2e-5bfd51fee95c",
+      "name": "Edit Fields"
+    }
+  ],
+  "connections": {},
+  "pinData": {},
+  "meta": {
+    "instanceId": "9103cdfd1862ad40953a6fd3c2bd56c0b0c896e5310930d85c1ef697fb0f64a2"
+  }
+}
